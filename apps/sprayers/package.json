@@ -1,0 +1,8 @@
+{
+  "name": "@sprayers/sprayers",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "sprayers"
+  }
+}
