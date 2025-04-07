@@ -12,7 +12,7 @@ export const HeaderInput: React.FC<Props> = ({
 }) => {
   return (
     <div className="bg-blue-300 px-4 py-1 flex flex-col">
-      <div className="">{title}</div>
+      <div className="text-center">{title}</div>
       <div className="flex gap-1 justify-center">
         <input
           className="text-center bg-blue-300 border border-black w-20"

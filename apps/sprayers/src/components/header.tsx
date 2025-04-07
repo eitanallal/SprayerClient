@@ -17,17 +17,17 @@ export const Header: React.FC = () => {
       {/* <div className="text-3xl font-bold text-blue-500">RPerception</div> */}
       <img src="/RP.png" />
       <HeaderItem title="Horizontal speed" value="0" unit="m/s" />
-      <HeaderItem title="Average flow rate" value="1.2" unit="L/dunam" />
-      <HeaderItem title="Tank Level" value="0" unit="%" />
-      <HeaderItem
-        title={time.toLocaleDateString()}
-        value={time.toLocaleTimeString()}
-      />
+      <HeaderItem title="Instantaneous flow rate" value="1.2" unit="L/Dunam" />
       <HeaderInput
         title="Spraying target"
         value={sprayingTarget}
         setter={setSprayingTarget}
         unit="L/Dunam"
+      />
+      <HeaderItem title="Tank Level" value="0" unit="%" />
+      <HeaderItem
+        title={time.toLocaleDateString()}
+        value={time.toLocaleTimeString()}
       />
       <div className="flex gap-4">
         <CiSettings className="w-12 h-12 transition-transform duration-300 hover:rotate-90 hover:cursor-pointer" />

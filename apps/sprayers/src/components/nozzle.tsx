@@ -17,7 +17,7 @@ export const Nozzle: React.FC<Props> = ({ nozzle, setNozzle }) => {
         {nozzle.name}
       </div>
       <div className="p-1 text-center">
-        {nozzle.status === NozzleState.OFF ? 0 : nozzle.flow}L/dunam
+        {nozzle.status === NozzleState.OFF ? 0 : nozzle.flow}L/Dunam
       </div>
       <div className="flex">
         <button
@@ -35,7 +35,7 @@ export const Nozzle: React.FC<Props> = ({ nozzle, setNozzle }) => {
           ON
         </button>
         <button
-          className={`w-14 p-1 border-t border-x border-black ${
+          className={`w-16 p-1 border-t border-l border-black  ${
             nozzle.status != NozzleState.OFF ? 'bg-slate-300' : 'font-bold'
           } hover:bg-slate-600`}
           onClick={() =>
@@ -48,7 +48,7 @@ export const Nozzle: React.FC<Props> = ({ nozzle, setNozzle }) => {
         >
           OFF
         </button>
-        <button
+        {/* <button
           className={`w-16 p-1 border-t border-black  ${
             nozzle.status != NozzleState.AUTO ? 'bg-slate-300' : 'font-bold'
           } hover:bg-slate-600`}
@@ -61,7 +61,7 @@ export const Nozzle: React.FC<Props> = ({ nozzle, setNozzle }) => {
           }
         >
           AUTO
-        </button>
+        </button>*/}
       </div>
     </div>
   );

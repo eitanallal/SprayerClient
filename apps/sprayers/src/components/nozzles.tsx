@@ -17,17 +17,17 @@ export const Nozzles: React.FC = () => {
   const [nozzle2L, setNozzle2L] = useState<NozzleType>({
     flow: 1,
     name: '2L',
-    status: NozzleState.AUTO,
+    status: NozzleState.ON,
   });
   const [nozzle2R, setNozzle2R] = useState<NozzleType>({
     flow: 1.1,
     name: '2R',
-    status: NozzleState.AUTO,
+    status: NozzleState.ON,
   });
   const [nozzle3L, setNozzle3L] = useState<NozzleType>({
     flow: 0,
     name: '3L',
-    status: NozzleState.AUTO,
+    status: NozzleState.ON,
   });
   const [nozzle3R, setNozzle3R] = useState<NozzleType>({
     flow: 0,
@@ -37,7 +37,7 @@ export const Nozzles: React.FC = () => {
   const [nozzle4L, setNozzle4L] = useState<NozzleType>({
     flow: 1.5,
     name: '4L',
-    status: NozzleState.AUTO,
+    status: NozzleState.ON,
   });
   const [nozzle4R, setNozzle4R] = useState<NozzleType>({
     flow: 0,
