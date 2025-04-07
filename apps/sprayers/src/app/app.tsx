@@ -1,48 +1,37 @@
-import NxWelcome from './nx-welcome';
+import { Header } from '../components/header';
+import { Nozzles } from '../components/nozzles';
+import { CiMapPin } from 'react-icons/ci';
 
-import { Route, Routes, Link } from 'react-router-dom';
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { Icon } from 'leaflet';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="sprayers" />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
+      <Header />
+      <div className="flex gap-10 w-full h-full justify-between p-4">
+        <Nozzles />
+        <div className="w-full h-15rem py-2">
+          <MapContainer
+            center={[31.88, 34.96]}
+            zoom={13}
+            scrollWheelZoom={false}
+            style={{
+              height: '95%',
+            }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker
+              position={[31.885, 34.961]}
+              // icon={new Icon({ iconUrl: 'react-icons/ci/CiMapPin' })}
+            />
+          </MapContainer>
+        </div>
       </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
     </div>
   );
 }
