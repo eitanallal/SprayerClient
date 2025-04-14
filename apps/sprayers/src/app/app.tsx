@@ -1,19 +1,56 @@
 import { Header } from '../components/header';
 import { Nozzles } from '../components/nozzles';
-import { CiMapPin } from 'react-icons/ci';
-
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import { Icon } from 'leaflet';
+import {
+  useGetGPSDataQuery,
+  useGetSystemStatusQuery,
+  useSendCommandMutation,
+} from '../store/api.slice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 export function App() {
+  const {} = useGetSystemStatusQuery(undefined, { pollingInterval: 1000 });
+
+  const {} = useGetGPSDataQuery(undefined, {
+    pollingInterval: 1000,
+  });
+
+  const systemState = useSelector(
+    (state: RootState) => state.system.systemStatus
+  );
+
+  const [sendCommand] = useSendCommandMutation();
+
   return (
     <div>
       <Header />
       <div className="flex gap-10 w-full h-full justify-between p-4">
-        <Nozzles />
+        <div>
+          <div className="flex gap-2">
+            Requested Mode:
+            <select
+              onChange={(e) =>
+                sendCommand({ id: 'aaaa', SystemCommand: e.target.value })
+              }
+            >
+              <option>MIXING</option>
+              <option>SPRAYING</option>
+              <option>MAINTENANCE</option>
+              <option>STOP</option>
+              <option>CONSTANT_SPRAY</option>
+            </select>
+          </div>
+          <div className="flex gap-2">
+            Current Mode:
+            <div className="font-bold">{systemState}</div>
+          </div>
+
+          <Nozzles />
+        </div>
         <div className="w-full h-15rem py-2">
-          <MapContainer
+          {/* <MapContainer
             center={[31.88, 34.96]}
             zoom={13}
             scrollWheelZoom={false}
@@ -27,9 +64,9 @@ export function App() {
             />
             <Marker
               position={[31.885, 34.961]}
-              // icon={new Icon({ iconUrl: 'react-icons/ci/CiMapPin' })}
+              icon={new Icon({ iconUrl: 'react-icons/ci/CiMapPin' })}
             />
-          </MapContainer>
+          </MapContainer> */}
         </div>
       </div>
     </div>
