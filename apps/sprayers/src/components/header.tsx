@@ -28,8 +28,7 @@ export const Header: React.FC = () => {
   const flowRate =
     nozzleData.reduce((sum, item) => sum + item.flow, 0) / nozzleData.length;
   return (
-    <div className="flex gap-2 justify-between m-2 items-center">
-      {/* <div className="text-3xl font-bold text-blue-500">RPerception</div> */}
+    <div className="flex gap-2 justify-between m-2 items-center h-24">
       <img src="/RP.png" />
       <HeaderItem title="Speed" value={`${speed}`} unit="m/s" />
       <HeaderItem title="Flow rate" value={`${flowRate}`} unit="L/Dunam" />

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Nozzle } from '../types/nozzle.type';
 import { GPSDataType } from '../types/GPSData.type';
+import { HealthDataType } from '../types/HealthData.type';
 
 export enum NozzleState {
   ON = 'ON',
@@ -12,6 +13,7 @@ const initialState: {
   systemStatus: string;
   nozzles: Nozzle[];
   GPSdata: GPSDataType;
+  health: HealthDataType;
 } = {
   systemStatus: '',
   nozzles: [
@@ -33,6 +35,7 @@ const initialState: {
     heading: 0,
     alt: 0,
   },
+  health: { time_since_last_GPS_data: null },
 };
 
 const systemReducer = createSlice({
@@ -65,9 +68,19 @@ const systemReducer = createSlice({
     updateGPSData: (state, action: PayloadAction<{ GPSdata: GPSDataType }>) => {
       state.GPSdata = action.payload.GPSdata;
     },
+    updateHealthData: (
+      state,
+      action: PayloadAction<{ health: HealthDataType }>
+    ) => {
+      state.health = action.payload.health;
+    },
   },
 });
 
-export const { setSystemStatus, updateNozzleStatus, updateGPSData } =
-  systemReducer.actions;
+export const {
+  setSystemStatus,
+  updateNozzleStatus,
+  updateGPSData,
+  updateHealthData,
+} = systemReducer.actions;
 export default systemReducer.reducer;

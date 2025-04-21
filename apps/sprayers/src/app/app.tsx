@@ -4,11 +4,15 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import {
   useGetGPSDataQuery,
+  useGetHealthDataQuery,
   useGetSystemStatusQuery,
   useSendCommandMutation,
 } from '../store/api.slice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function App() {
   const {} = useGetSystemStatusQuery(undefined, { pollingInterval: 1000 });
@@ -21,14 +25,24 @@ export function App() {
     (state: RootState) => state.system.systemStatus
   );
 
+  const {} = useGetHealthDataQuery(undefined, {
+    pollingInterval: 1000,
+  });
+
   const [sendCommand] = useSendCommandMutation();
 
   return (
     <div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        closeOnClick={true}
+      />
+
       <Header />
       <div className="flex gap-10 w-full h-full justify-between p-4">
         <div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-full">
             Requested Mode:
             <select
               onChange={(e) =>
@@ -44,7 +58,9 @@ export function App() {
           </div>
           <div className="flex gap-2">
             Current Mode:
-            <div className="font-bold">{systemState}</div>
+            <div className="font-bold">
+              {systemState ? systemState : 'UNKNOWN'}
+            </div>
           </div>
 
           <Nozzles />

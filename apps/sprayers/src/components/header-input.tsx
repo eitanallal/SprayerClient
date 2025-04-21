@@ -9,7 +9,7 @@ export const HeaderInput: React.FC<Props> = ({ title, unit }) => {
   const [sendCommand] = useSendCommandMutation();
   const [value, setValue] = useState('0');
   return (
-    <div className="bg-blue-300 px-4 py-1 flex flex-col">
+    <div className="bg-blue-300 px-4 py-1 gap-1 flex flex-col rounded-md h-full">
       <div className="text-center">{title}</div>
       <div className="flex gap-1 justify-center">
         <input
@@ -21,7 +21,7 @@ export const HeaderInput: React.FC<Props> = ({ title, unit }) => {
         {unit ? <div className="text-center">{unit}</div> : null}
       </div>
       <button
-        className="border border-black"
+        className="border border-black hover:bg-slate-800 hover:text-white"
         onClick={(e) =>
           sendCommand({
             id: '123456',

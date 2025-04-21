@@ -1,7 +1,12 @@
 // src/api/apiSlice.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { setSystemStatus, updateGPSData } from './system.slice';
+import {
+  setSystemStatus,
+  updateGPSData,
+  updateHealthData,
+} from './system.slice';
 import { NozzleState } from '../enums/nozzle-state.enum';
+import { toast } from 'react-toastify';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -46,8 +51,7 @@ export const apiSlice = createApi({
             })
           );
         } catch (err) {
-          console.error('Eitan is here');
-          // Handle error if needed
+          throw new Error('Error in updating system state');
         }
       },
     }),
@@ -71,7 +75,55 @@ export const apiSlice = createApi({
             })
           );
         } catch (err) {
-          console.error('Eitan is here');
+          throw new Error('Error in updating GPS data');
+        }
+      },
+    }),
+
+    getHealthData: builder.query<any, void>({
+      query: () => '/health',
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        // const toastLoadingHealthId = toast.loading('Loading health data...');
+
+        try {
+          const { data } = await queryFulfilled;
+          console.log(data.time_since_last_GPS_data);
+          if (data.time_since_last_GPS_data > 30) {
+            const existingToast = toast.isActive('no-gps-warn-toast');
+            if (!existingToast) {
+              toast.warning(
+                `No GPS for ${Math.floor(data.time_since_last_GPS_data)}s`,
+                {
+                  toastId: 'no-gps-warn-toast',
+                  autoClose: false,
+                }
+              );
+            } else {
+              // If the toast exists, update its content
+              toast.update('no-gps-warn-toast', {
+                render: `No GPS supplied for ${Math.floor(
+                  data.time_since_last_GPS_data
+                )}s`, // Update message
+                type: 'warning', // Ensure the type remains warning
+                isLoading: false, // No longer loading
+                autoClose: false, // Stay indefinitely
+              });
+            }
+          } else {
+            if (toast.isActive('no-gps-warn-toast'))
+              toast.dismiss('no-gps-warn-toast');
+          }
+          dispatch(
+            updateHealthData({
+              health: data,
+            })
+          );
+        } catch (err) {
+          toast.error("Communication Issue: can't connect to API", {
+            toastId: 'api-error-toast',
+            autoClose: false,
+          });
+          throw new Error('Error in updating Health data');
         }
       },
     }),
@@ -84,4 +136,5 @@ export const {
   useGetSystemStatusQuery,
   useGetLogsQuery,
   useGetGPSDataQuery,
+  useGetHealthDataQuery,
 } = apiSlice;
