@@ -13,6 +13,7 @@ import { RootState } from '../store/store';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Button } from '../components/button';
 
 export function App() {
   const {} = useGetSystemStatusQuery(undefined, { pollingInterval: 1000 });
@@ -34,7 +35,7 @@ export function App() {
   return (
     <div>
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={3000}
         closeOnClick={true}
       />
@@ -66,24 +67,35 @@ export function App() {
           <Nozzles />
         </div>
         <div className="w-full h-15rem py-2">
-          {/* <MapContainer
-            center={[31.88, 34.96]}
-            zoom={13}
-            scrollWheelZoom={false}
+          <MapContainer
+            center={[31.885, 34.961]}
+            zoom={18}
+            scrollWheelZoom={true}
             style={{
               height: '95%',
             }}
           >
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              maxZoom={20}
+              subdomains={['mt1', 'mt2', 'mt3']}
             />
-            <Marker
-              position={[31.885, 34.961]}
-              icon={new Icon({ iconUrl: 'react-icons/ci/CiMapPin' })}
-            />
-          </MapContainer> */}
+            <Marker position={[31.885, 34.961]} />
+          </MapContainer>
         </div>
+      </div>
+      <div className="w-full px-4 py-2 bg-grey-200 h-40 flex flex-col gap-4 flex-wrap justify-between items-center">
+        <Button text="STOP" color="red" />
+        <Button text="Homing" color="blue" />
+        <Button text="Protocol 1" color="grey1" />
+        <Button text="Protocol 2" color="grey1" />
+        <Button text="Selective 1" color="grey2" />
+        <Button text="Selective 2" color="grey2" />
+        <Button text="Washing" color="green" />
+        <Button text="TBD" color="white" />
+        <Button text="TBD" color="white" />
+        <Button text="TBD" color="white" />
       </div>
     </div>
   );
