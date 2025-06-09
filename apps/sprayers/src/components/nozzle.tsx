@@ -36,7 +36,7 @@ export const Nozzle: React.FC<Props> = ({ nozzle }) => {
             sendCommand({
               id: '123456',
               SystemCommand: systemState,
-              nozzleOpen: { [nozzle.name]: true },
+              nozzleOpen: { [Number(nozzle.name) - 1]: true },
             }).then((response) => {
               console.log(response.data.system_status.nozzleOpen);
               dispatch(

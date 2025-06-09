@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://52.207.250.139:80' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://10.0.0.128:5000' }),
   endpoints: (builder) => ({
     // POST /command
     sendCommand: builder.mutation<
