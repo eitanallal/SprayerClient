@@ -1,6 +1,7 @@
 interface Props {
   text: string;
   color: keyof typeof colorMap;
+  onClick?: () => void;
 }
 
 export const colorMap = {
@@ -36,11 +37,12 @@ export const colorMap = {
   },
 };
 
-export const Button: React.FC<Props> = ({ text, color }) => {
+export const Button: React.FC<Props> = ({ text, color, onClick }) => {
   const style = colorMap[color];
 
   return (
     <div
+      onClick={onClick}
       className={`w-1/6 h-2/5 text-center p-4 border
        border-black rounded-md ${style.text} ${style.base} ${style.hover}`}
     >

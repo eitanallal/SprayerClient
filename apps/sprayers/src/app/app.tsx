@@ -86,16 +86,96 @@ export function App() {
         </div>
       </div>
       <div className="w-full px-4 py-2 bg-grey-200 h-40 flex flex-col gap-4 flex-wrap justify-between items-center">
-        <Button text="STOP" color="red" />
-        <Button text="Homing" color="blue" />
-        <Button text="Protocol 1" color="grey1" />
-        <Button text="Protocol 2" color="grey1" />
-        <Button text="Selective 1" color="grey2" />
-        <Button text="Selective 2" color="grey2" />
-        <Button text="Washing" color="green" />
-        <Button text="TBD" color="white" />
-        <Button text="TBD" color="white" />
-        <Button text="TBD" color="white" />
+        <Button
+          text="STOP"
+          color="red"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="Homing"
+          color="blue"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="Protocol 1"
+          color="grey1"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="Protocol 2"
+          color="grey1"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="Selective 1"
+          color="grey2"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="Selective 2"
+          color="grey2"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="Washing"
+          color="green"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="TBD"
+          color="white"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="TBD"
+          color="white"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
+        <Button
+          text="TBD"
+          color="white"
+          onClick={async () => {
+            const response = await fetch('https://google.com');
+            const data = await response.json();
+            console.log(data);
+          }}
+        />
       </div>
     </div>
   );
